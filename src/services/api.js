@@ -5,9 +5,11 @@ export const api = axios.create({
 });
 
 api.interceptors.request.use(async config => {
-  const token = localStorage.getItem("devburger:token");
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
+  const userData = localStorage.getItem("devburger:userData");
+
+  const token = userData && JSON.parse(userData).token
+
+  config.headers.Authorization = `Bearer ${token}`;
+  
   return config;
 });

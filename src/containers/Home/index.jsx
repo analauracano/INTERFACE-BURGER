@@ -3,7 +3,6 @@ import { OffersCarousel } from "../../components/OffersCarousel copy";
 import { Banner, Container} from "./styles";
 
 export function Home() {
-
   return (
     <main>
       <Banner>

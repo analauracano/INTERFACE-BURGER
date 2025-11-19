@@ -6,9 +6,6 @@ import { CardProduct } from '../../components/CardProduct';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { BackButton } from '../../components/BackButton';
 
-console.log("URL COMPLETA:", window.location.href);
-
-
 export function Menu() {
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
