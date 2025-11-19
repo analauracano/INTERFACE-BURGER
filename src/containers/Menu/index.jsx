@@ -2,9 +2,8 @@ import { useEffect, useState } from 'react';
 import { Container, Banner, CategoryMenu, CategoryButton, ProductsContainer} from './styles'
 import { api } from '../../services/api';
 import { formatPrice } from '../../utils/formatPrice';
-import { CardProduct } from '../../components/CardProduct';
+import { CardProduct, BackButton } from '../../components';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { BackButton } from '../../components/BackButton';
 
 export function Menu() {
   const [categories, setCategories] = useState([]);

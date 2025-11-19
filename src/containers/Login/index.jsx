@@ -16,8 +16,7 @@ import {
 } from "./styles";
 
 import Logo from "../../assets/Logo 1.svg";
-import { Button } from "../../components/Button";
-import { GoogleButton } from "../../components/GoogleButton"; 
+import { Button, GoogleButton } from "../../components";
 import { api } from "../../services/api";
 import { signInWithGooglePopup } from "../../services/firebase";
 

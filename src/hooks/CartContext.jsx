@@ -25,7 +25,10 @@ export const CartProvider = ({children}) => {
   };
   
 
-  const clearCart = () => {}
+  const clearCart = () => {
+    setCartProducts([]);
+    updateLocalStorage([]);
+  };
 
   const deleteProduct = (productId) => {
     const newCart = cartProducts.filter((prd) => prd.id !== productId);
