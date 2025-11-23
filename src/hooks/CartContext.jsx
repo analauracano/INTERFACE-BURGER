@@ -36,7 +36,7 @@ export const CartProvider = ({children}) => {
     updateLocalStorage(newCart);
   };
 
-  const incraseProduct = (productId) => {
+  const increaseProduct = (productId) => {
     const newCart = cartProducts.map((prd) => {
       return prd.id === productId ? {...prd, quantity: prd.quantity + 1} : prd;
     });
@@ -44,7 +44,7 @@ export const CartProvider = ({children}) => {
     updateLocalStorage(newCart);
   };
 
-  const decraseProduct = (productId) => {
+  const decreaseProduct = (productId) => {
     const cartIndex = cartProducts.findIndex((prd) => prd.id === productId);
     
     if(cartProducts[cartIndex].quantity > 1){
@@ -63,15 +63,16 @@ export const CartProvider = ({children}) => {
   };
 
   useEffect(() => {
-    const clientCartData = localStorage.getItem('devburger:cartInfo');
+  const clientCartData = localStorage.getItem('devburger:cartInfo');
 
-    if(clientCartData){
-      setCartProducts(JSON.parse(clientCartData));
-    }
-  }, [cartProducts])
+  if(clientCartData){
+    setCartProducts(JSON.parse(clientCartData));
+  }
+}, []); 
+
 
   return(
-    <CartContext.Provider value={{cartProducts, putProductInCart, clearCart, incraseProduct, decraseProduct, deleteProduct}}>
+    <CartContext.Provider value={{cartProducts, putProductInCart, clearCart, increaseProduct, decreaseProduct, deleteProduct}}>
     {children}
   </CartContext.Provider>
   );

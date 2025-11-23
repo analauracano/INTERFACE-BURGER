@@ -7,3 +7,5 @@ export * from './Footer';
 export * from './GoogleButton';
 export * from './Header';
 export * from './OffersCarousel';
+export * from './Table';
+export * from './CartItems';
