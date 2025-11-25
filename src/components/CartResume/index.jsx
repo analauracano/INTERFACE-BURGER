@@ -26,19 +26,18 @@ export function CartResume(){
   const products = cartProducts.map((product) => ({
     id: product.id,
     quantity: product.quantity,
+    price: product.price,
   }));
-  try{
-  await api.post("/orders", {products
-        },);
-  
-        toast.success("Pedido realizado com sucesso!");
-        navigate("/");
-  
-      } catch (error) {
-        toast.error("Não foi possível realizar o pedido.");
-      }
-      
-      clearCart();
+
+try {
+  const { clientSecret } = (await api.post("/create-payment-intent", { products })).data;
+
+  navigate('/checkout', {
+    state: { clientSecret },
+  });
+} catch (err) {
+  toast.error("Não foi possível realizar o pedido.");
+}
   };
 
   return(

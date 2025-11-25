@@ -1,19 +1,17 @@
 import { Routes, Route, Outlet } from "react-router-dom"; 
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
-import { Cart, Home, Login, Menu, Register } from "../containers";
+import { Cart, Checkout, CompletePayment, Home, Login, Menu, Register } from "../containers";
 
-// Layout base com footer SEMPRE
 function LayoutBase() {
   return (
     <>
-      <Outlet /> {/* Conteúdo da página */}
+      <Outlet />
       <Footer />
     </>
   );
 }
 
-// Layout com header (e footer vem do LayoutBase)
 function LayoutWithHeader() {
   return (
     <>
@@ -26,19 +24,21 @@ function LayoutWithHeader() {
 export function AppRoutes() {
   return (
     <Routes>
-
-      {/* Todas as rotas terão footer */}
       <Route element={<LayoutBase />}>
 
         {/* Rotas sem header */}
         <Route path="/login" element={<Login />} />
         <Route path="/cadastro" element={<Register />} />
         <Route path="/carrinho" element={<Cart />} />
+        <Route path="/complete" element={<CompletePayment />} />
 
-        {/* Rotas com header */}
+        {/* Rotas que precisam header */}
         <Route element={<LayoutWithHeader />}>
           <Route path="/" element={<Home />} />
           <Route path="/cardapio" element={<Menu />} />
+
+          {/* MOVER O CHECKOUT PARA ESTE BLOCO */}
+          <Route path="/checkout" element={<Checkout />} />
         </Route>
 
       </Route>
