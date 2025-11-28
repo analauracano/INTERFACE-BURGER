@@ -9,7 +9,8 @@ export const Container = styled.div`
   margin-bottom: 20px;
 
   * {
-    color: #484848;
+    color: ${(props) => props.theme.secondBlack}
+;
     font-weight: 500;
   }
 
@@ -26,7 +27,8 @@ export const Container = styled.div`
       font-size: 20px;
       font-weight: 700;
       margin-bottom: 20px;
-      background-color: #484848;
+      background-color: ${(props) => props.theme.secondBlack}
+;
       color: #fff;
       width: 100%;
       padding: 15px;

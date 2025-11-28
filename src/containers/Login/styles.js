@@ -1,5 +1,5 @@
+import { Link as ReactLink } from "react-router-dom";
 import styled from "styled-components";
-import {Link as ReactLink} from "react-router-dom";
 import BackgroundLogin from "../../assets/background-login.svg";
 import Background from "../../assets/background.svg";
 
@@ -55,7 +55,8 @@ export const Title = styled.h2`
   color: #fff;
 
   span{
-    color: #9758a6;
+    color:  ${(props) => props.theme.purple};
+;
     font-family: "Road Rage", sans-serif;
   }
 `;

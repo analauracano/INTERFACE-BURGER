@@ -52,8 +52,12 @@ export function Login() {
           success:{
             render() {
               setTimeout(() => {
+                if(userData?.admin){
+                  navigate('/admin/pedidos');
+                  return;
+                } else{
                 navigate('/');
-              }, 2000);
+            }}, 2000);
               return "Login realizado com sucesso! 👌";
             },
           },

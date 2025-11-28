@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import Texture from '../../assets/texture.svg'
-import Background from '../../assets/background.svg'
+import Background from '../../assets/background.svg';
+import Texture from '../../assets/texture.svg';
 
 export const Container = styled.div`
   width: 100%;
@@ -10,7 +10,8 @@ export const Container = styled.div`
 
 export const Banner = styled.div`
   background: url('${Texture}');
-  background-color: #1f1f1f;
+  background-color: ${(props) => props.theme.mainBlack}
+;
   background-size: cover;
   background-position: center;
   display: flex;

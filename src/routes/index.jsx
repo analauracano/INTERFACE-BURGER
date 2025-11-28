@@ -1,47 +1,28 @@
-import { Routes, Route, Outlet } from "react-router-dom"; 
-import { Header } from "../components/Header";
-import { Footer } from "../components/Footer";
-import { Cart, Checkout, CompletePayment, Home, Login, Menu, Register } from "../containers";
+import { Route, Routes } from "react-router-dom";
+import { Cart, Checkout, CompletePayment, EditProduct, Home, Login, Menu, NewProduct, Orders, Products, Register } from "../containers";
+import { UserLayout } from "../layouts/UserLayout";
+import { AdminLayout } from "../layouts/AdminLayout";
 
-function LayoutBase() {
-  return (
-    <>
-      <Outlet />
-      <Footer />
-    </>
-  );
-}
-
-function LayoutWithHeader() {
-  return (
-    <>
-      <Header />
-      <Outlet />
-    </>
-  );
-}
-
-export function AppRoutes() {
+export function Router(){
   return (
     <Routes>
-      <Route element={<LayoutBase />}>
-
-        {/* Rotas sem header */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/cadastro" element={<Register />} />
-        <Route path="/carrinho" element={<Cart />} />
-        <Route path="/complete" element={<CompletePayment />} />
-
-        {/* Rotas que precisam header */}
-        <Route element={<LayoutWithHeader />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/cardapio" element={<Menu />} />
-
-          {/* MOVER O CHECKOUT PARA ESTE BLOCO */}
-          <Route path="/checkout" element={<Checkout />} />
-        </Route>
-
+      <Route path="/" element={< UserLayout/>}>
+      <Route path="/" element={<Home />} />
+      <Route path="/cardapio" element={<Menu />} />
+      <Route path="/carrinho" element={<Cart />} />
+      <Route path="/checkout" element={<Checkout />} />
+      <Route path="/complete" element={<CompletePayment />} />
       </Route>
+
+    <Route path="/admin" element={<AdminLayout />}>
+      <Route path="/admin/pedidos" element={<Orders />}/>
+      <Route path="/admin/novo-produto" element={<NewProduct />}/>
+      <Route path="/admin/editar-produto" element={<EditProduct />}/>
+      <Route path="/admin/produtos" element={<Products />}/>
+    </Route>
+
+      <Route path="/login" element={<Login />} />
+      <Route path="/cadastro" element={<Register />} />
     </Routes>
-  );
+  )
 }

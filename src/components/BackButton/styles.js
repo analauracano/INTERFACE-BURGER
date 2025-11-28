@@ -4,7 +4,8 @@ export const Button = styled.button`
   position: absolute;
   top: 500px;
   left: 20px;
-  background-color: #9758a6;
+  background-color:  ${(props) => props.theme.purple};
+;
   color: #fff;
   border: none;
   border-radius: 50%;

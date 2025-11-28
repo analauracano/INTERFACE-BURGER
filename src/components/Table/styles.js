@@ -15,7 +15,8 @@ export const Th = styled.th`
   padding: 16px;
   text-align: left;
   color: #fff;
-  background-color: #484848;
+  background-color: ${(props) => props.theme.secondBlack}
+;
   border-bottom: 1px solid #cdcdcd;
 
   &:last-child {
@@ -29,7 +30,8 @@ export const Th = styled.th`
 
 export const Td = styled.td`
   padding: 16px;
-  color: #484848;
+  color: ${(props) => props.theme.secondBlack}
+;
   font-weight: 500;
   line-height: 115%;
 `;
