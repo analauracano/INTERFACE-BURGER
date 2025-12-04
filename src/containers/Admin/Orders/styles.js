@@ -1,4 +1,4 @@
-import select from 'react-select';
+import Select from 'react-select';
 import styled from 'styled-components';
 
 export const ProductImage = styled.img`
@@ -7,7 +7,7 @@ export const ProductImage = styled.img`
   border-radius: 16px;
 `;
 
-export const StatusSelect = styled(select)`
+export const SelectStatus = styled(Select)`
   width: 240px;
 `;
 

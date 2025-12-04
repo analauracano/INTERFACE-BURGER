@@ -2,15 +2,17 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { ImageIcon } from '@phosphor-icons/react';
 import { Controller, useForm } from 'react-hook-form';
 import * as yup from 'yup';
-import { Container, ErrorMessage, Form, Input, InputGroup, Label, LabelUpload, Select, SubmitButton } from './styles';
+import { Container, ContainerCheckBox, ErrorMessage, Form, Input, InputGroup, Label, LabelUpload, Select, SubmitButton } from './styles';
 import { useState, useEffect } from 'react';
 import { api } from '../../../services/api';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const schema = yup.object({
   name: yup.string().required('Digite o nome do produto'),
   price: yup.number().positive('Digite o preço do produto').required().typeError('Digite o preço do produto'),
   category: yup.object().required('Escolha uma categoria'),
+  offer: yup.bool(),
   file: yup.mixed().test('required', 'Escolha um arquivo para contuinuar', (value) => {
     return value && value.length > 0;
   }).test('fileSize', 'Carregue arquivos até 3mb', (value) => {
@@ -22,6 +24,8 @@ const schema = yup.object({
 export function NewProduct() {
   const [fileName, setFileName] = useState(null);
   const [categories, setCategories] = useState([]);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
 
@@ -49,12 +53,17 @@ export function NewProduct() {
     productFormData.append('price', data.price)
     productFormData.append('category_id', data.category.id)
     productFormData.append('file', data.file[0])
-
+    productFormData.append('offer', data.offer)
+    
     await toast.promise(api.post('/products', productFormData), {
       pending: 'Adicionando produto',
       success: 'Produto criado com sucesso',
       error: 'Falha ao adicionar o produto, tente novamente',
     });
+
+    setTimeout(() => {
+      navigate('/admin/produtos')
+    }, 2000)
   };
 
   return (
@@ -68,7 +77,7 @@ export function NewProduct() {
 
         <InputGroup>
         <Label>Preço</Label>
-        <Input type="number" {...register("price")} />
+        <Input type="number" {...register("price") * 100 }/>
         <ErrorMessage>{errors?.price?.message}</ErrorMessage>        
         </InputGroup>
         <InputGroup>
@@ -80,7 +89,7 @@ export function NewProduct() {
           accept='image/png, image/jpeg'
           onChange={(value) => {
             setFileName(value.target.files[0]?.name)
-            register('file').onChane(value)
+            register('file').onChange(value)
           }}
           />
           {fileName || "Upload do Produto"}
@@ -106,6 +115,15 @@ export function NewProduct() {
       />
 
       <ErrorMessage>{errors?.category?.message}</ErrorMessage>
+
+      
+        <InputGroup>
+          <ContainerCheckBox>
+            <input type="checkbox"{...register("offer")} />
+            <Label>Produto em Oferta?</Label>
+          </ContainerCheckBox>
+        </InputGroup>
+
         </InputGroup>
         <SubmitButton>Adicionar Produto</SubmitButton>
       </Form>
