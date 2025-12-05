@@ -10,6 +10,9 @@ import stripePromise from './config/stripeConfig';
 import { ThemeProvider } from "styled-components";
 import { standardTheme } from "./styles/themes/standard";
 
+console.log("API_KEY:", import.meta.env.VITE_FIREBASE_API_KEY);
+console.log("API_URL:", import.meta.env.VITE_API_URL);
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ThemeProvider theme={standardTheme}>
